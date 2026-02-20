@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/preview.png" alt="typing-test preview" width="100%"></p>
+
 # Typing Speed Test
 
 A retro pixel-style typing speed test with real-time WPM tracking, accuracy stats, and personal bests stored in localStorage.
