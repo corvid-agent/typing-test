@@ -160,7 +160,7 @@ test.describe('Typing interaction', () => {
     const initialText = await page.locator('#text-display').textContent();
 
     // Click new text multiple times to increase odds of getting different text
-    // (there are 10 texts, so odds are good)
+    // (there are 20 texts, so odds are good)
     let changed = false;
     for (let i = 0; i < 5; i++) {
       await page.locator('#btn-new-text').click();

@@ -181,7 +181,13 @@ a:focus-visible, button:focus-visible, input:focus-visible {
   cursor: text;
   user-select: none;
   position: relative;
-  word-break: break-word;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.text-display .word {
+  display: inline-block;
+  white-space: nowrap;
 }
 
 .text-display:focus-within {
@@ -683,16 +689,26 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 
   // --- Text excerpts ---
   const TEXTS = [
-    "It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness.",
-    "Call me Ishmael. Some years ago, never mind how long precisely, having little or no money in my purse.",
-    "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.",
-    "Once upon a midnight dreary, while I pondered, weak and weary, over many a quaint and curious volume of forgotten lore.",
-    "In the beginning God created the heaven and the earth. And the earth was without form, and void.",
-    "All happy families are alike; each unhappy family is unhappy in its own way.",
-    "It was a bright cold day in April, and the clocks were striking thirteen.",
-    "The sky above the port was the color of television, tuned to a dead channel.",
-    "Far out in the uncharted backwaters of the unfashionable end of the western spiral arm of the Galaxy lies a small unregarded yellow sun.",
-    "In a hole in the ground there lived a hobbit. Not a nasty, dirty, wet hole, filled with the ends of worms."
+    "It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness. It was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair.",
+    "Call me Ishmael. Some years ago, never mind how long precisely, having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world. It is a way I have of driving off the spleen and regulating the circulation.",
+    "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife. However little known the feelings or views of such a man may be on his first entering a neighbourhood, this truth is so well fixed in the minds of the surrounding families, that he is considered the rightful property of some one or other of their daughters.",
+    "Once upon a midnight dreary, while I pondered, weak and weary, over many a quaint and curious volume of forgotten lore. While I nodded, nearly napping, suddenly there came a tapping, as of some one gently rapping, rapping at my chamber door. Tis some visitor, I muttered, tapping at my chamber door. Only this and nothing more.",
+    "In the beginning God created the heaven and the earth. And the earth was without form, and void, and darkness was upon the face of the deep. And the Spirit of God moved upon the face of the waters. And God said, Let there be light, and there was light. And God saw the light, that it was good.",
+    "All happy families are alike; each unhappy family is unhappy in its own way. Everything was in confusion in the Oblonskys house. The wife had discovered that the husband was carrying on an intrigue with a French girl, who had been a governess in their family, and she had announced to her husband that she could not go on living in the same house with him.",
+    "It was a bright cold day in April, and the clocks were striking thirteen. Winston Smith, his chin nuzzled into his breast in an effort to escape the vile wind, slipped quickly through the glass doors of Victory Mansions, though not quickly enough to prevent a swirl of gritty dust from entering along with him.",
+    "The sky above the port was the color of television, tuned to a dead channel. It was not the kind of sky you would want to look at for long. The wind was cold, and the streets were empty. Somewhere in the distance, a siren wailed, cutting through the silence like a blade through water.",
+    "Far out in the uncharted backwaters of the unfashionable end of the western spiral arm of the Galaxy lies a small unregarded yellow sun. Orbiting this at a distance of roughly ninety-two million miles is an utterly insignificant little blue green planet whose ape-descended life forms are so amazingly primitive that they still think digital watches are a pretty neat idea.",
+    "In a hole in the ground there lived a hobbit. Not a nasty, dirty, wet hole, filled with the ends of worms and an oozy smell, nor yet a dry, bare, sandy hole with nothing in it to sit down on or to eat. It was a hobbit-hole, and that means comfort. It had a perfectly round door like a porthole, painted green.",
+    "The quick brown fox jumps over the lazy dog. She sells seashells by the seashore. How much wood would a woodchuck chuck if a woodchuck could chuck wood? Peter Piper picked a peck of pickled peppers. A peck of pickled peppers Peter Piper picked. The rain in Spain stays mainly in the plain.",
+    "To be or not to be, that is the question. Whether it is nobler in the mind to suffer the slings and arrows of outrageous fortune, or to take arms against a sea of troubles and by opposing end them. To die, to sleep, no more, and by a sleep to say we end the heartache and the thousand natural shocks that flesh is heir to.",
+    "Space, the final frontier. These are the voyages of the starship Enterprise. Its continuing mission, to explore strange new worlds, to seek out new life and new civilizations, to boldly go where no one has gone before. The universe is a vast and mysterious place, full of wonders that we have only begun to understand.",
+    "In the middle of the journey of our life, I found myself within a dark wood, where the straight way was lost. How hard a thing it is to say what this wild and rough and difficult wood was, which in thought renews my fear. So bitter is it that death is little more. But to treat of the good I found in it, I will tell of the other things I saw there.",
+    "The old man sat by the fire, watching the flames dance and flicker in the fading light. Outside, the wind howled through the trees, carrying with it the first snow of winter. He pulled his coat tighter and thought about the years gone by, each one a chapter in a story that was nearing its end. But tonight, there was warmth, and that was enough.",
+    "It was a dark and stormy night. The wind blew in fierce gusts and the rain pattered loudly against the windows. Through the darkness, a single light burned steadily in the window of a small cottage on the hillside. Inside, the fire crackled and popped, casting long shadows that danced across the walls. The clock on the mantel struck midnight, its chimes echoing through the empty rooms.",
+    "Technology has changed the way we live, work, and communicate with each other. From the invention of the printing press to the rise of the internet, each new advancement has reshaped our world in profound ways. We carry powerful computers in our pockets, connect with people across the globe in an instant, and have access to more information than any generation before us.",
+    "The art of writing is the art of discovering what you believe. Every sentence is a journey, every paragraph a destination. The best writers are those who can take the ordinary and make it extraordinary, who can find beauty in the mundane and wisdom in the everyday. Writing is not just about putting words on paper, it is about connecting with another human being.",
+    "Music fills the silence between heartbeats. It speaks in a language older than words, reaching into the depths of the soul where nothing else can go. A single melody can unlock a thousand memories, each note a key to a door long forgotten. Whether played on a grand piano or hummed softly in the dark, music has the power to heal, to inspire, and to transform.",
+    "The ocean stretched out before them, endless and blue, meeting the sky at a horizon that seemed to promise everything and nothing at the same time. Waves crashed against the shore in a steady rhythm, ancient and unchanging. The salt air filled their lungs as they stood at the edge of the world, feeling small and infinite all at once."
   ];
 
   // --- State ---
@@ -757,13 +773,28 @@ a:focus-visible, button:focus-visible, input:focus-visible {
   // --- Render text display ---
   function renderText() {
     let html = '';
+    let inWord = false;
     for (let i = 0; i < currentText.length; i++) {
       let cls = charStates[i] || 'dim';
       if (i === currentIndex && !testFinished) {
         cls += ' current';
       }
-      const ch = currentText[i] === ' ' ? '&nbsp;' : escapeHtml(currentText[i]);
-      html += '<span class="char ' + cls + '">' + ch + '</span>';
+      if (currentText[i] === ' ') {
+        if (inWord) {
+          html += '</span>';
+          inWord = false;
+        }
+        html += '<span class="char ' + cls + '"> </span> ';
+      } else {
+        if (!inWord) {
+          html += '<span class="word">';
+          inWord = true;
+        }
+        html += '<span class="char ' + cls + '">' + escapeHtml(currentText[i]) + '</span>';
+      }
+    }
+    if (inWord) {
+      html += '</span>';
     }
     textDisplay.innerHTML = html;
   }
